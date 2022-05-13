@@ -6,12 +6,9 @@
 
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  background-image: url("images/backgroundImage.jpeg");
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 
 .intro {
@@ -20,4 +17,14 @@ body {
   justify-content: center;
   align-items: center;
 
+  background-image: url("images/backgroundImage.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+button {
+  display: none;
+  margin-top: 50px;
 }
