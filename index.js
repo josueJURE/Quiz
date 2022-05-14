@@ -2,6 +2,10 @@ const select = document.querySelector("select");
 const button = document.querySelector("button");
 const intro = document.querySelector(".intro");
 const quiz = document.querySelector(".quiz");
+const quizImage = document.querySelector(".quizImage img");
+console.log(quizImage.src)
+
+
 
 let japaneseAnimeJapanese = [
 {
@@ -57,8 +61,9 @@ function displayButton() {
 }
 
 function startQuiz() {
-  button.style.display = "none"
-  intro.style.display = "none"
-  quiz.style.display = "block"
+  button.style.display = "none";
+  quiz.style.display = "flex";
+  intro.style.display = "none";
+  quizImage.src = japaneseAnimeEnglish[0].picture
 
 }
