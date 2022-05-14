@@ -49,6 +49,7 @@ h2 {
 .quiz {
   display: none;
   justify-content: center;
+  position: relative;
 
   border: 1px black solid;
   height: 800px;
@@ -65,4 +66,25 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.choices {
+  position: absolute;
+  bottom: 10px;
+}
+
+.choice {
+  border: 1px black solid;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  width: 500px;
+  height: 25px;
+  text-align: center;
+  background: rgb(97, 99, 90);
+  color: white;
+}
+
+.choice:hover {
+  transform: scale(1.1);
+  background: rgb(77, 120, 66);
 }
