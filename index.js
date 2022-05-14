@@ -4,8 +4,7 @@ const intro = document.querySelector(".intro");
 const quiz = document.querySelector(".quiz");
 const introMessage = document.querySelector(".introMessage");
 const quizImage = document.querySelector(".quizImage img");
-console.log(quizImage.src)
-
+const multipleChoice = [...document.querySelector(".multipleChoice").children];
 
 
 let japaneseAnimeJapanese = [
@@ -57,6 +56,29 @@ let japaneseAnimeEnglish = [
 select.addEventListener("change", displayButton);
 button.addEventListener("click", startQuiz);
 
+
+
+function randomNumbers() {
+  return  Math.floor(Math.random()*multipleChoice.length);
+}
+
+function generateRandomNumbers() {
+  const uniqueNumbers = new Set();
+  while (uniqueNumbers.size < multipleChoice.length) {
+    uniqueNumbers.add(randomNumbers())
+  }
+}
+
+generateRandomNumbers()
+
+
+
+
+
+multipleChoice.forEach((choice, i) => {
+  choice.innerHTML = japaneseAnimeJapanese[i].name
+})
+
 function displayButton() {
   button.style.display = "block"
   introMessage.style.display = "none"
@@ -66,6 +88,6 @@ function startQuiz() {
   button.style.display = "none";
   quiz.style.display = "flex";
   intro.style.display = "none";
-  quizImage.src = japaneseAnimeEnglish[0].picture
+  quizImage.src = japaneseAnimeEnglish[randomNumbers()].picture
 
 }
