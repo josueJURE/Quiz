@@ -2,6 +2,7 @@ const select = document.querySelector("select");
 const button = document.querySelector("button");
 const intro = document.querySelector(".intro");
 const quiz = document.querySelector(".quiz");
+const introMessage = document.querySelector(".introMessage");
 const quizImage = document.querySelector(".quizImage img");
 console.log(quizImage.src)
 
@@ -58,6 +59,7 @@ button.addEventListener("click", startQuiz);
 
 function displayButton() {
   button.style.display = "block"
+  introMessage.style.display = "none"
 }
 
 function startQuiz() {

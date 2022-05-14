@@ -25,25 +25,49 @@ body {
 
 }
 
-button {
-  display: none;
-  margin-top: 50px;
+.rule {
+  position: absolute;
 }
 
-h1 {
+button {
+  display: none;
+  position: absolute;
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%); */
+  background-color: #f1f1f1;
+  color: black;
+  font-size: 16px;
+  padding: 16px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+button:hover {
+  background-color: black;
+  color: white;
+
+}
+
+.introMessage {
   background: white;
   color: red;
   width: 70%;
   text-align: center;
   border-radius: 10px;
-}
-
-h1:hover {
-  transform: scale(1.1);
+  position: absolute;
+  white-space: nowrap;
 }
 
 h2 {
   text-align: center;
+}
+
+select {
+  transform: translateY(50px);
 }
 
 .quiz {
@@ -68,7 +92,7 @@ img {
   object-fit: cover;
 }
 
-.choices {
+.multipleChoice {
   position: absolute;
   bottom: 10px;
 }
