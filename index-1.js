@@ -7,6 +7,9 @@ const quizImage = document.querySelector(".quizImage img");
 const multipleChoice = [...document.querySelector(".multipleChoice").children];
 const quizLength = multipleChoice.length;
 const finalScore = document.querySelector(".finalScore");
+const coloredElements = document.querySelector(".coloredElements");
+console.log(coloredElements);
+
 let [counter, count] = [0, 0];
 
 import {japaneseAnimeJapanese, japaneseAnimeEnglish} from "./index-2.js"
@@ -33,7 +36,7 @@ function checkUserAnswer(e) {
   } else {
     answer.classList.add("wrong");
     update();
-  }
+  }''
 }
 
 function update() {
@@ -49,7 +52,6 @@ function displayFinalScore() {
   quiz.style.display = "none";
   finalScore.style.display = "flex";
   finalScore.innerHTML = `<h1>Your final score is ${(counter/quizLength)*100}%</h1>`
-
 }
 
 function randomNumbers() {
@@ -72,6 +74,17 @@ function displayUniqueChoices() {
   })
 }
 
+function displayRoundElements() {
+  var i = 0
+  while( i < quizLength) {
+    let element = document.createElement("div");
+    element.setAttribute("class", "roundBoxes");
+    element.setAttribute("id", i);
+    coloredElements.append(element);
+    i++
+  }
+}
+
 
 
 function displayButton() {
@@ -85,4 +98,5 @@ function startQuiz() {
   intro.style.display = "none";
   displayUniqueChoices();
   userChoice();
+  displayRoundElements();
 }

@@ -128,3 +128,23 @@ img {
   height: 400px;
   width: 500px;
 }
+
+.coloredElements {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  outline: none;
+  border-radius: 10px;
+  height: 50px;
+  width: 500px;
+  position: absolute;
+  transform: translateY(575px);
+}
+
+.roundBoxes {
+  height: 15px;
+  width: 15px;
+  border-radius: 100%;
+  background: grey;
+}
