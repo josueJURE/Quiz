@@ -15,16 +15,26 @@ console.log(japaneseAnimeEnglish)
 
 select.addEventListener("change", displayButton);
 button.addEventListener("click", startQuiz);
+// multipleChoice.addEventListener("click", userChoice)
 
+function userChoice(e) {
+  for(var i = 0; i < multipleChoice.length; i++) {
+    multipleChoice[i].addEventListener("click", checkUserAnswer)
+  }
+}
 
+function checkUserAnswer(e) {
+  let answer = e.target;
+  if(answer.innerHTML === japaneseAnimeEnglish[counter].name) {
+    answer.style.background = "green";
+  } else {
+    answer.style.background = "red";
+  }
+}
 
 function randomNumbers() {
   return  Math.floor(Math.random()*multipleChoice.length);
 }
-
-console.log(randomNumbers())
-
-
 
 function generateRandomNumbers() {
   const uniqueNumbers = new Set();
@@ -42,6 +52,8 @@ function displayUniqueChoices() {
   })
 }
 
+
+
 function displayButton() {
   button.style.display = "block"
   introMessage.style.display = "none"
@@ -52,4 +64,5 @@ function startQuiz() {
   quiz.style.display = "flex";
   intro.style.display = "none";
   displayUniqueChoices();
+  userChoice();
 }
