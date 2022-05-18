@@ -25,7 +25,7 @@ let japaneseAnimeJapanese = [
 
 let japaneseAnimeEnglish = [
 {
-  name: "dragon ball",
+  name: "Dragon ball",
   picture: "https://dbgbh.bn-ent.net/assets/img/news/news_thumb_kv.png"
 },
 {

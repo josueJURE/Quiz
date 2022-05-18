@@ -112,3 +112,19 @@ img {
   transform: scale(1.1);
   background: rgb(47, 49, 40);
 }
+
+.correct {
+  background: green;
+}
+
+.wrong {
+  background: red;
+}
+
+.finalScore {
+  display: "none";
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  width: 500px;
+}

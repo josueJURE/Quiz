@@ -5,8 +5,9 @@ const quiz = document.querySelector(".quiz");
 const introMessage = document.querySelector(".introMessage");
 const quizImage = document.querySelector(".quizImage img");
 const multipleChoice = [...document.querySelector(".multipleChoice").children];
-console.log(multipleChoice)
-let counter = 0;
+const quizLength = multipleChoice.length;
+const finalScore = document.querySelector(".finalScore");
+let [counter, count] = [0, 0];
 
 import {japaneseAnimeJapanese, japaneseAnimeEnglish} from "./index-2.js"
 
@@ -26,19 +27,38 @@ function userChoice(e) {
 function checkUserAnswer(e) {
   let answer = e.target;
   if(answer.innerHTML === japaneseAnimeEnglish[counter].name) {
-    answer.style.background = "green";
+    answer.classList.add("correct");
+    update();
+    count++
   } else {
-    answer.style.background = "red";
+    answer.classList.add("wrong");
+    update();
   }
 }
 
+function update() {
+  if(counter < quizLength - 1) {
+    counter++;
+    displayUniqueChoices()
+  } else {
+    displayFinalScore()
+  }
+}
+
+function displayFinalScore() {
+  quiz.style.display = "none";
+  finalScore.style.display = "flex";
+  finalScore.innerHTML = `<h1>Your final score is ${(counter/quizLength)*100}%</h1>`
+
+}
+
 function randomNumbers() {
-  return  Math.floor(Math.random()*multipleChoice.length);
+  return  Math.floor(Math.random()*quizLength);
 }
 
 function generateRandomNumbers() {
   const uniqueNumbers = new Set();
-  while (uniqueNumbers.size < multipleChoice.length) {
+  while (uniqueNumbers.size < quizLength) {
     uniqueNumbers.add(randomNumbers())
   }
   return [...uniqueNumbers]
