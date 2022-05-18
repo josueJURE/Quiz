@@ -31,12 +31,12 @@ function generateRandomNumbers() {
   while (uniqueNumbers.size < multipleChoice.length) {
     uniqueNumbers.add(randomNumbers())
   }
-  return uniqueNumbers
+  return [...uniqueNumbers]
 }
 
 function displayUniqueChoices() {
   quizImage.src = japaneseAnimeEnglish[counter].picture;
-  const arrayUniqueDigits = [...generateRandomNumbers()];
+  const arrayUniqueDigits = generateRandomNumbers();
   multipleChoice.forEach((choice, i) => {
     choice.innerHTML = japaneseAnimeEnglish[arrayUniqueDigits[i]].name
   })
