@@ -30,13 +30,20 @@ function userChoice(e) {
 function checkUserAnswer(e) {
   let answer = e.target;
   if(answer.innerHTML === japaneseAnimeEnglish[counter].name) {
-    answer.classList.add("correct");
-    update();
+    correctAnswer();
     count++
   } else {
-    answer.classList.add("wrong");
-    update();
-  }''
+    wrongAnswer();
+  }
+  update();
+}
+
+function wrongAnswer() {
+  document.getElementById(counter).style.background = "red";
+}
+
+function correctAnswer() {
+  document.getElementById(counter).style.background = "green";
 }
 
 function update() {
