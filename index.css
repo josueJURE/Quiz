@@ -39,8 +39,10 @@ button {
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%); */
-  background-color: #f1f1f1;
-  color: black;
+  /* background-color: #f1f1f1; */
+  background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+  box-shadow: 10px 10px black;
+  color: grey;
   font-size: 16px;
   padding: 16px 30px;
   border: none;
@@ -50,9 +52,12 @@ button {
 }
 
 button:hover {
-  background-color: black;
-  color: white;
-
+  background: linear-gradient(0.20turn, #3f87a6, #ebf8e1, #f69d3c);
+  /* background-color: black; */
+  box-shadow: 12.5px 12.5px black;
+  color: black;
+  font-size: 18px;
+  transform: 2000ms;
 }
 
 .introMessage {
@@ -70,7 +75,7 @@ h2 {
 }
 
 select {
-  transform: translateY(50px);
+  transform: translateY(80px);
 }
 
 .quiz {
@@ -108,12 +113,14 @@ img {
   height: 25px;
   text-align: center;
   background: rgb(97, 99, 90);
+
   color: white;
 }
 
 .choice:hover {
   transform: scale(1.1);
-  background: rgb(47, 49, 40);
+
+  background-: rgb(47, 49, 40);
 }
 
 .correct {
