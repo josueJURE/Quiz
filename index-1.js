@@ -17,17 +17,10 @@ import {japaneseAnimeJapanese, japaneseAnimeEnglish} from "./index-2.js"
 select.addEventListener("change", displayButton);
 button.addEventListener("click", startQuiz);
 
-
 function quizClock() {
-  if(clock < timeUp) {
-    clock++
-    timer.innerHTML = clock;
-  } else {
-    clock = 0;
-  }
+  clock < timeUp ? clock++ : clock = 0;
+  timer.innerHTML = clock;
 }
-
-
 
 function userChoice(e) {
   for(var i = 0; i < multipleChoice.length; i++) {
