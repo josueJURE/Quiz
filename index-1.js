@@ -8,18 +8,26 @@ const multipleChoice = [...document.querySelector(".multipleChoice").children];
 const quizLength = multipleChoice.length;
 const finalScore = document.querySelector(".finalScore");
 const coloredElements = document.querySelector(".coloredElements");
-console.log(coloredElements);
+const timer = document.querySelector(".timer");
 
-let [counter, count] = [0, 0];
+let [counter, count, clock, timeUp] = [0, 0, 0, 10];
 
 import {japaneseAnimeJapanese, japaneseAnimeEnglish} from "./index-2.js"
 
-console.log(japaneseAnimeEnglish)
-
-
 select.addEventListener("change", displayButton);
 button.addEventListener("click", startQuiz);
-// multipleChoice.addEventListener("click", userChoice)
+
+
+function quizClock() {
+  if(clock < timeUp) {
+    clock++
+    timer.innerHTML = clock;
+  } else {
+    clock = 0;
+  }
+}
+
+
 
 function userChoice(e) {
   for(var i = 0; i < multipleChoice.length; i++) {
@@ -94,8 +102,6 @@ function displayRoundElements() {
   }
 }
 
-
-
 function displayButton() {
   button.style.display = "block"
   introMessage.style.display = "none"
@@ -108,4 +114,5 @@ function startQuiz() {
   displayUniqueChoices();
   userChoice();
   displayRoundElements();
+  setInterval(quizClock, 1000)
 }
