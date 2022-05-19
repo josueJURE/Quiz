@@ -55,6 +55,8 @@ function update() {
   }
 }
 
+  console.log(quizLength)
+
 function displayFinalScore() {
   quiz.style.display = "none";
   finalScore.style.display = "flex";
