@@ -81,6 +81,8 @@ select {
 .timer {
   position: absolute;
   transform: translateY(560px);
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .quiz {
@@ -90,7 +92,7 @@ select {
 
   border: 1px black solid;
   height: 800px;
-  width: 800px;
+  width: 100vw;
 }
 
 .quizImage {
@@ -155,6 +157,14 @@ img {
   width: 500px;
   position: absolute;
   transform: translateY(575px);
+}
+
+.questionAnswered {
+  position: absolute;
+  transform: translate(450px, 450px);
+}
+
+
 }
 
 .roundBoxes {

@@ -9,6 +9,7 @@ const quizLength = multipleChoice.length;
 const finalScore = document.querySelector(".finalScore");
 const coloredElements = document.querySelector(".coloredElements");
 const timer = document.querySelector(".timer");
+const questionAnswered = document.querySelector(".questionAnswered");
 
 let [counter, count, clock, timeUp] = [0, 0, 0, 10];
 
@@ -17,9 +18,18 @@ import {japaneseAnimeJapanese, japaneseAnimeEnglish} from "./index-2.js"
 select.addEventListener("change", displayButton);
 button.addEventListener("click", startQuiz);
 
+// function trackQuestion() {
+//   questionAnswered.innerHTML = counter + "\" + quizLength
+// }
+
+
 function quizClock() {
   clock < timeUp ? clock++ : clock = 0;
   timer.innerHTML = clock;
+  if(clock === timeUp) {
+    wrongAnswer()
+    update()
+  }
 }
 
 function userChoice(e) {
@@ -37,6 +47,7 @@ function checkUserAnswer(e) {
     wrongAnswer();
   }
   update();
+  clock = 0;
 }
 
 function wrongAnswer() {
@@ -61,7 +72,7 @@ function update() {
 function displayFinalScore() {
   quiz.style.display = "none";
   finalScore.style.display = "flex";
-  finalScore.innerHTML = `<h1>Your final score is ${(counter/quizLength)*100}%</h1>`
+  finalScore.innerHTML = `<h1>Your final score is ${(count/quizLength)*100}%</h1>`
 }
 
 function randomNumbers() {
@@ -107,5 +118,5 @@ function startQuiz() {
   displayUniqueChoices();
   userChoice();
   displayRoundElements();
-  setInterval(quizClock, 1000)
+  setInterval(quizClock, 1000);
 }
