@@ -14,6 +14,18 @@ body {
   align-items: center;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  border: black solid 1px;
+  min-height: 100vh;
+  min-width: 100vw;
+  overflow: hidden;
+}
+
 .intro {
   display: flex;
   flex-direction: column;
@@ -22,17 +34,52 @@ body {
   background-image: url("images/backgroundImage.jpeg");
   background-size: cover;
 
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  min-width: 100vw;
+  position: absolute;
 
+  background-repeat: no-repeat;
+  height: 80%;
+  width: 80%;
+  z-index: -1;
+}
+
+.landingPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+
+  height: 80%;
+  width: 80%;
+  border: red 3px solid;
+  background-color: grey;
+}
+
+.slides {
+  left: -20rem;
+}
+
+button.btn_1 {
+  /* display: block; */
+  height: auto;
+  width: auto;
+  background-color: green;
+  background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+  box-shadow: 10px 10px black;
+  color: grey;
+  font-size: 16px;
+  padding: 16px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
 }
 
 .rule {
   position: absolute;
 }
 
-button {
+.btn_2 {
   display: none;
   position: absolute;
   /* top: 50%;

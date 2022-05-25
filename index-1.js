@@ -8,20 +8,29 @@ const multipleChoice = [...document.querySelector(".multipleChoice").children];
 const quizLength = multipleChoice.length;
 const finalScore = document.querySelector(".finalScore");
 const coloredElements = document.querySelector(".coloredElements");
-console.log(coloredElements.parentElement)
 const timer = document.querySelector(".timer");
 const questionAnswered = document.querySelector(".questionAnswered");
+const btn_1 = document.querySelector(".btn_1");
+const landingPage = document.querySelector(".landingPage");
+console.log(landingPage)
+
+
 
 let [counter, count, clock, timeUp] = [0, 0, 0, 10];
 
 import {japaneseAnimeJapanese, japaneseAnimeEnglish} from "./index-2.js"
 
+btn_1.addEventListener("click", slideFunction)
 select.addEventListener("change", displayButton);
 button.addEventListener("click", startQuiz);
 
 // function trackQuestion() {
 //   questionAnswered.innerHTML = counter + "\" + quizLength
 // }
+//
+function slideFunction() {
+  landingPage.classList.toggle("slides");
+}
 
 
 function quizClock() {
