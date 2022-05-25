@@ -8,6 +8,7 @@ const multipleChoice = [...document.querySelector(".multipleChoice").children];
 const quizLength = multipleChoice.length;
 const finalScore = document.querySelector(".finalScore");
 const coloredElements = document.querySelector(".coloredElements");
+console.log(coloredElements.parentElement)
 const timer = document.querySelector(".timer");
 const questionAnswered = document.querySelector(".questionAnswered");
 
@@ -26,10 +27,10 @@ button.addEventListener("click", startQuiz);
 function quizClock() {
   clock < timeUp ? clock++ : clock = 0;
   timer.innerHTML = clock;
-  if(clock === timeUp) {
-    wrongAnswer()
-    update()
-  }
+  // if(clock === timeUp) {
+  //   wrongAnswer()
+  //   update()
+  // }
 }
 
 function userChoice(e) {
@@ -96,13 +97,8 @@ function displayUniqueChoices() {
 }
 
 function displayRoundElements() {
-  var i = 0
-  while( i < quizLength) {
-    let element = document.createElement("div");
-    element.setAttribute("class", "roundBoxes");
-    element.setAttribute("id", i);
-    coloredElements.append(element);
-    i++
+  for(var i = 0; i < quizLength; i++) {
+    coloredElements.innerHTML += `<div id=${i} class="roundBoxes"></div>`
   }
 }
 

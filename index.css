@@ -159,6 +159,13 @@ img {
   transform: translateY(575px);
 }
 
+.coloredElements > * {
+  height: 15px;
+  width: 15px;
+  border: 1px black solid;
+  border-radius: 100%;
+}
+
 .questionAnswered {
   position: absolute;
   transform: translate(450px, 450px);
@@ -168,8 +175,8 @@ img {
 }
 
 .roundBoxes {
-  height: 15px;
-  width: 15px;
+  height: 100%;
+  width: 100%;
   border-radius: 100%;
   background: grey;
 }
