@@ -12,7 +12,7 @@ const timer = document.querySelector(".timer");
 const questionAnswered = document.querySelector(".questionAnswered");
 const btn_1 = document.querySelector(".btn_1");
 const landingPage = document.querySelector(".landingPage");
-console.log(landingPage)
+
 
 
 

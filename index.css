@@ -16,13 +16,11 @@ body {
 
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 100vh;
   width: 100%;
   border: black solid 1px;
-  min-height: 100vh;
-  min-width: 100vw;
   overflow: hidden;
 }
 
@@ -40,6 +38,7 @@ body {
   height: 80%;
   width: 80%;
   z-index: -1;
+  transform: translate(100px);
 }
 
 .landingPage {
@@ -53,10 +52,12 @@ body {
   width: 80%;
   border: red 3px solid;
   background-color: grey;
+  transition: width 2s;
+  transform: translate(100px);
 }
 
 .slides {
-  left: -20rem;
+  width: 10%;
 }
 
 button.btn_1 {
