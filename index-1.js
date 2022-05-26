@@ -1,5 +1,7 @@
-const select = document.querySelector("select");
-const button = document.querySelector("button");
+const select = document.querySelector("#language");
+const container = document.querySelector(".container");
+console.log(container)
+const btn_2 = document.querySelector(".btn_2");
 const intro = document.querySelector(".intro");
 const quiz = document.querySelector(".quiz");
 const introMessage = document.querySelector(".introMessage");
@@ -13,25 +15,17 @@ const questionAnswered = document.querySelector(".questionAnswered");
 const btn_1 = document.querySelector(".btn_1");
 const landingPage = document.querySelector(".landingPage");
 
-
-
-
 let [counter, count, clock, timeUp] = [0, 0, 0, 10];
 
 import {japaneseAnimeJapanese, japaneseAnimeEnglish} from "./index-2.js"
 
-btn_1.addEventListener("click", slideFunction)
+btn_1.addEventListener("click", slideFunction);
+btn_2.addEventListener("click", startQuiz);
 select.addEventListener("change", displayButton);
-button.addEventListener("click", startQuiz);
 
-// function trackQuestion() {
-//   questionAnswered.innerHTML = counter + "\" + quizLength
-// }
-//
 function slideFunction() {
   landingPage.classList.toggle("slides");
 }
-
 
 function quizClock() {
   clock < timeUp ? clock++ : clock = 0;
@@ -77,8 +71,6 @@ function update() {
   }
 }
 
-  console.log(quizLength)
-
 function displayFinalScore() {
   quiz.style.display = "none";
   finalScore.style.display = "flex";
@@ -112,14 +104,13 @@ function displayRoundElements() {
 }
 
 function displayButton() {
-  button.style.display = "block"
+  btn_2.style.display = "block"
   introMessage.style.display = "none"
 }
 
 function startQuiz() {
-  button.style.display = "none";
   quiz.style.display = "flex";
-  intro.style.display = "none";
+  container.style.display = "none"
   displayUniqueChoices();
   userChoice();
   displayRoundElements();
