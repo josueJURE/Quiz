@@ -1,6 +1,5 @@
 const select = document.querySelector("#language");
 const container = document.querySelector(".container");
-console.log(container)
 const btn_2 = document.querySelector(".btn_2");
 const intro = document.querySelector(".intro");
 const quiz = document.querySelector(".quiz");
@@ -11,11 +10,16 @@ const quizLength = multipleChoice.length;
 const finalScore = document.querySelector(".finalScore");
 const coloredElements = document.querySelector(".coloredElements");
 const timer = document.querySelector(".timer");
+console.log(quiz)
 const questionAnswered = document.querySelector(".questionAnswered");
 const btn_1 = document.querySelector(".btn_1");
 const landingPage = document.querySelector(".landingPage");
 
 let [counter, count, clock, timeUp] = [0, 0, 0, 10];
+
+
+// index-1.js:32 Uncaught TypeError: Cannot set properties of null (setting 'innerHTML')
+//     at quizClock (index-1.js:32:19)
 
 import {japaneseAnimeJapanese, japaneseAnimeEnglish} from "./index-2.js"
 
@@ -30,10 +34,10 @@ function slideFunction() {
 function quizClock() {
   clock < timeUp ? clock++ : clock = 0;
   timer.innerHTML = clock;
-  // if(clock === timeUp) {
-  //   wrongAnswer()
-  //   update()
-  // }
+  if(clock === timeUp) {
+    wrongAnswer()
+    update()
+  }
 }
 
 function userChoice(e) {
@@ -65,9 +69,16 @@ function correctAnswer() {
 function update() {
   if(counter < quizLength - 1) {
     counter++;
-    displayUniqueChoices()
+    displayUniqueChoices();
+    trackQuestion();
   } else {
-    displayFinalScore()
+    displayFinalScore();
+  }
+}
+
+function trackQuestion() {
+  if(counter < quizLength) {
+    questionAnswered.innerHTML = `question ${counter+1} of ${quizLength}`;
   }
 }
 
@@ -109,10 +120,12 @@ function displayButton() {
 }
 
 function startQuiz() {
-  quiz.style.display = "flex";
-  container.style.display = "none"
-  displayUniqueChoices();
-  userChoice();
-  displayRoundElements();
-  setInterval(quizClock, 1000);
+    quiz.style.display = "flex";
+    container.style.display = "none";
+    intro.style.display = "none";
+    displayUniqueChoices();
+    userChoice();
+    displayRoundElements();
+    trackQuestion()
+    setInterval(quizClock, 1000);
 }
