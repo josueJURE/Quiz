@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap');
 
-* {
+* ,
+:after,
+:before
+{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -127,11 +130,21 @@ select {
 }
 
 .timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
   position: absolute;
   transform: translateY(560px);
   font-size: 20px;
   font-weight: 700;
+
+  height: 50px;
+  width: 50px;
+  border: 1px solid;
 }
+
 
 .quiz {
   display: none;
@@ -237,9 +250,63 @@ img {
   transform: translate(-450px, 450px);
 }
 
+.progressCirlceBar {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  transform: translate(450px, 450px);
+  height: 200px;
+  width: 200px;
+  background-color: white;
+}
+
+.circle {
+  height: 180px;
+  width: 180px;
+  background-color: green;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.circle:before {
+  content: "";
+  height: 84%;
+  width:84%;
+  background-color: orange;
+  border-radius: 50%;
+  /* position: absolute; */
+  display: grid;
+  place-items: center;
+}
+
 .questionAnswered {
   position: absolute;
-  transform: translate(450px, 450px);
+  font-size: 15px;
+  font-family: fantasy;
+  color: white;
+  height: 50px;
+  width: 50px;
+  z-index: 100;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .roundBoxes {
