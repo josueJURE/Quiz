@@ -7,10 +7,13 @@ const introMessage = document.querySelector(".introMessage");
 const quizImage = document.querySelector(".quizImage img");
 const multipleChoice = [...document.querySelector(".multipleChoice").children];
 const quizLength = multipleChoice.length;
+// const circle2 = document.querySelector(".circle2");
+const circleContainer = document.querySelector(".circleContainer")
+const circleBar = 360 / quizLength; // if five question value is 72degree;
 const finalScore = document.querySelector(".finalScore");
 const coloredElements = document.querySelector(".coloredElements");
 const timer = document.querySelector(".timer");
-console.log(quiz)
+
 const questionAnswered = document.querySelector(".questionAnswered");
 const btn_1 = document.querySelector(".btn_1");
 const landingPage = document.querySelector(".landingPage");
@@ -31,14 +34,20 @@ function slideFunction() {
   landingPage.classList.toggle("slides");
 }
 
+
+
 function quizClock() {
   clock < timeUp ? clock++ : clock = 0;
   timer.innerHTML = clock;
+  circleContainer.style.background = `conic-gradient(red ${clock*36}deg, yellow ${clock*36}deg)`
   if(clock === timeUp) {
     wrongAnswer()
     update()
   }
 }
+
+
+
 
 function userChoice(e) {
   for(var i = 0; i < multipleChoice.length; i++) {

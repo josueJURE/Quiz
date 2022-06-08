@@ -129,6 +129,44 @@ select {
   transform: translateY(80px);
 }
 
+.timerContainer {
+  height: 200px;
+  width: 200px;
+  background: white;
+}
+
+.circleContainer {
+  height: 80%;
+  width: 80%;
+  background: blue;
+  border-radius: 50%;
+  position: relative;
+
+}
+
+.circle2 {
+  height: 80%;
+  width: 80%;
+  background: orange;
+  border-radius: 50%;
+  position: relative;
+
+}
+
+.cirlce2:before {
+  content: "";
+  height: 80%;
+  width: 80%;
+  background-color: black;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.center {
+  display: grid;
+  place-items: center;
+}
+
 .timer {
   display: flex;
   justify-content: center;
@@ -274,7 +312,7 @@ img {
   content: "";
   height: 84%;
   width:84%;
-  background-color: orange;
+  background-color: white;
   border-radius: 50%;
   /* position: absolute; */
   display: grid;
