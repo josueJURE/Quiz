@@ -7,7 +7,6 @@ const introMessage = document.querySelector(".introMessage");
 const quizImage = document.querySelector(".quizImage img");
 const multipleChoice = [...document.querySelector(".multipleChoice").children];
 const quizLength = multipleChoice.length;
-// const circle2 = document.querySelector(".circle2");
 const circleContainer = document.querySelector(".circleContainer")
 const circleBar = 360 / quizLength; // if five question value is 72degree;
 const finalScore = document.querySelector(".finalScore");
@@ -21,9 +20,6 @@ const landingPage = document.querySelector(".landingPage");
 let [counter, count, clock, timeUp] = [0, 0, 0, 10];
 
 
-// index-1.js:32 Uncaught TypeError: Cannot set properties of null (setting 'innerHTML')
-//     at quizClock (index-1.js:32:19)
-
 import {japaneseAnimeJapanese, japaneseAnimeEnglish} from "./index-2.js"
 
 btn_1.addEventListener("click", slideFunction);
@@ -36,18 +32,15 @@ function slideFunction() {
 
 
 
-function quizClock() {
-  clock < timeUp ? clock++ : clock = 0;
-  timer.innerHTML = clock;
-  circleContainer.style.background = `conic-gradient(red ${clock*36}deg, yellow ${clock*36}deg)`
-  if(clock === timeUp) {
-    wrongAnswer()
-    update()
-  }
-}
-
-
-
+// function quizClock() {
+//   clock < timeUp ? clock++ : clock = 0;
+//   timer.innerHTML = clock;
+//   circleContainer.style.background = `conic-gradient(red ${clock*36}deg, blue ${clock*36}deg)`
+//   if(clock === timeUp) {
+//     wrongAnswer()
+//     update()
+//   }
+// }
 
 function userChoice(e) {
   for(var i = 0; i < multipleChoice.length; i++) {
@@ -136,5 +129,5 @@ function startQuiz() {
     userChoice();
     displayRoundElements();
     trackQuestion()
-    setInterval(quizClock, 1000);
+    // setInterval(quizClock, 1000);
 }
