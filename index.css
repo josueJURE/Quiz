@@ -84,7 +84,6 @@ button.btn_1 {
   justify-items: center;
   align-items: center;
   flex-direction: column;
-
   border: 1px black solid;
   height: 100vh;
   width: 100vw;
@@ -119,13 +118,10 @@ button.btn_1 {
   border-radius: 50%;
 }
 .timer {
-  /* position: absolute; */
-  transform: translate(-450px, 450px);
   font-size: 20px;
   font-weight: 700;
   height: 50px;
   width: 50px;
-  border: 1px solid;
 }
 .progressCirlceBar {
   position: absolute;
@@ -159,7 +155,6 @@ button.btn_1 {
   position: absolute;
   font-size: 15px;
   font-family: fantasy;
-  color: white;
   height: 50px;
   width: 50px;
   z-index: 100;
@@ -198,10 +193,43 @@ button.btn_1 {
   transform: scale(1.1);
   background: rgb(47, 49, 40);
 }
+.finalScoreContainer {
+  height: 100vh;
+  width: 100vh;
+}
 .finalScore {
   display: "none";
   height: 400px;
   width: 500px;
+}
+.bubble {
+  position: relative;
+  font-size: 18px;
+  width: 300px;
+  left: 260px;
+  bottom: 50px;
+  height: 100px;
+  width: 400px;
+  border: 1px black solid;
+  border-radius: 50px;
+  background: white;
+}
+.bubble:before {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  border-left: 24px solid #fff;
+  border-right: 12px solid transparent;
+  border-top: 12px solid #fff;
+  border-bottom: 20px solid transparent;
+  left: 32px;
+  bottom: -24px;
+}
+.gif {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .centerFlex {
   display: flex;
@@ -209,22 +237,12 @@ button.btn_1 {
   align-items: center;
   flex-direction: column;
 }
-
-
-
-
 .slides {
   width: 10%;
 }
-
-
-
 .rule {
   position: absolute;
 }
-
-
-
 button:hover {
   background: linear-gradient(0.20turn, #3f87a6, #ebf8e1, #f69d3c);
   box-shadow: 12.5px 12.5px black;
@@ -232,100 +250,44 @@ button:hover {
   font-size: 18px;
   transform: 2000ms;
 }
-
-
-
 h2 {
   text-align: center;
 }
-
 select {
   transform: translateY(80px);
 }
-
-
-
-
-
-
-
-
-
 .center {
   display: grid;
   place-items: center;
 }
-
 .quiz_2 {
   display: flex;
   justify-content: space-around;
   align-items: center;
-
   margin-top: 0;
-
-
 }
-
-
-
-
-
 img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
-
-
-
-
-
 .correct {
   background: green;
 }
-
 .wrong {
   background: red;
 }
-
-
-
-
-
 .coloredElements > * {
   height: 5px;
   width: 5px;
   border: 1px black solid;
   border-radius: 5px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .roundBoxes {
   height: 10%;
   width: 10%;

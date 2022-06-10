@@ -10,12 +10,15 @@ const quizLength = multipleChoice.length;
 const circleContainer = document.querySelector(".circleContainer")
 const circleBar = 360 / quizLength; // if five question value is 72degree;
 const finalScore = document.querySelector(".finalScore");
+const bubble = document.querySelector(".bubble");
+const gif = document.querySelector(".gif");
 const coloredElements = document.querySelector(".coloredElements");
 const timer = document.querySelector(".timer");
-
 const questionAnswered = document.querySelector(".questionAnswered");
 const btn_1 = document.querySelector(".btn_1");
 const landingPage = document.querySelector(".landingPage");
+// const body = document.querySelector("body");
+// console.log(body)
 
 let [counter, count, clock, timeUp] = [0, 0, 0, 10];
 
@@ -30,17 +33,15 @@ function slideFunction() {
   landingPage.classList.toggle("slides");
 }
 
-
-
-// function quizClock() {
-//   clock < timeUp ? clock++ : clock = 0;
-//   timer.innerHTML = clock;
-//   circleContainer.style.background = `conic-gradient(red ${clock*36}deg, blue ${clock*36}deg)`
-//   if(clock === timeUp) {
-//     wrongAnswer()
-//     update()
-//   }
-// }
+function quizClock() {
+  clock < timeUp ? clock++ : clock = 0;
+  timer.innerHTML = clock;
+  circleContainer.style.background = `conic-gradient(red ${clock*36}deg, blue ${clock*36}deg)`
+  if(clock === timeUp) {
+    wrongAnswer()
+    update()
+  }
+}
 
 function userChoice(e) {
   for(var i = 0; i < multipleChoice.length; i++) {
@@ -87,8 +88,11 @@ function trackQuestion() {
 function displayFinalScore() {
   quiz.style.display = "none";
   finalScore.style.display = "flex";
-  finalScore.innerHTML = `<h1>Your final score is ${(count/quizLength)*100}%</h1>`
+  bubble.innerHTML = `<h1>Your final score is ${(count/quizLength)*100}%</h1>`
+  gif.innerHTML = `<img src="images/dragon-ball-z-goku.gif" alt="">`
+  document.body.style.backgroundColor = "#368dda";
 }
+
 
 function randomNumbers() {
   return  Math.floor(Math.random()*quizLength);
@@ -129,5 +133,5 @@ function startQuiz() {
     userChoice();
     displayRoundElements();
     trackQuestion()
-    // setInterval(quizClock, 1000);
+    setInterval(quizClock, 1000);
 }
