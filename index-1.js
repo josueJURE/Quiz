@@ -17,8 +17,8 @@ const timer = document.querySelector(".timer");
 const questionAnswered = document.querySelector(".questionAnswered");
 const btn_1 = document.querySelector(".btn_1");
 const landingPage = document.querySelector(".landingPage");
-// const body = document.querySelector("body");
-// console.log(body)
+const input = document.querySelector("input");
+
 
 let [counter, count, clock, timeUp] = [0, 0, 0, 10];
 
@@ -86,11 +86,16 @@ function trackQuestion() {
 }
 
 function displayFinalScore() {
+  let userName = input.value;
+  let score = count/quizLength
+  localStorage.setItem("name", userName);
+  localStorage.setItem("score", score*100)
   quiz.style.display = "none";
   finalScore.style.display = "flex";
-  bubble.innerHTML = `<h1>Your final score is ${(count/quizLength)*100}%</h1>`
+  bubble.innerHTML = `<h1>Well done ${localStorage.name} Your final score is ${(score)*100}%</h1>`
   gif.innerHTML = `<img src="images/dragon-ball-z-goku.gif" alt="">`
   document.body.style.backgroundColor = "#368dda";
+  console.log(localStorage)
 }
 
 

@@ -16,6 +16,7 @@ body {
   align-items: center;
 }
 .container {
+  position: fixed;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -23,6 +24,7 @@ body {
   width: 100%;
   border: black solid 1px;
   overflow: hidden;
+  z-index: 100;
 }
 .intro {
   background-image: url("images/backgroundImage.jpeg");
@@ -42,6 +44,11 @@ body {
   position: absolute;
   white-space: nowrap;
 }
+
+input {
+  transform: translateY(100px);
+}
+
 .btn_2 {
   display: none;
   position: absolute;
@@ -210,7 +217,6 @@ button.btn_1 {
   bottom: 50px;
   height: 100px;
   width: 400px;
-  border: 1px black solid;
   border-radius: 50px;
   background: white;
 }
