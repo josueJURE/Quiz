@@ -1,4 +1,4 @@
-const select = document.querySelector("#language");
+const select = document.querySelector("#language"); // select element
 const container = document.querySelector(".container");
 const btn_2 = document.querySelector(".btn_2");
 const intro = document.querySelector(".intro");
@@ -21,7 +21,6 @@ const input = document.querySelector("input");
 
 
 let [counter, count, clock, timeUp] = [0, 0, 0, 10];
-
 
 import {japaneseAnimeJapanese, japaneseAnimeEnglish} from "./index-2.js"
 
@@ -126,8 +125,12 @@ function displayRoundElements() {
 }
 
 function displayButton() {
-  btn_2.style.display = "block"
-  introMessage.style.display = "none"
+  if(input.value === "") {
+    alert("enter a user name")
+  } else {
+    btn_2.style.display = "block";
+    introMessage.style.display = "none";
+  }
 }
 
 function startQuiz() {
@@ -140,3 +143,9 @@ function startQuiz() {
     trackQuestion()
     setInterval(quizClock, 1000);
 }
+
+input.addEventListener("click", function(e) {
+  if(input.value === "" && e.key !== "Enter") return;
+  input.style.display = "none";
+  select.style.display = "block";
+})
