@@ -1,4 +1,6 @@
 const select = document.querySelector("#language"); // select element
+const body = document.querySelector("body");
+console.log(body)
 const container = document.querySelector(".container");
 const btn_2 = document.querySelector(".btn_2");
 const intro = document.querySelector(".intro");
@@ -144,7 +146,7 @@ function startQuiz() {
     setInterval(quizClock, 1000);
 }
 
-input.addEventListener("click", function(e) {
+body.addEventListener("click", function(e) {
   if(input.value === "" && e.key !== "Enter") return;
   input.style.display = "none";
   select.style.display = "block";
