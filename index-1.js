@@ -1,6 +1,5 @@
 const select = document.querySelector("#language"); // select element
 const body = document.querySelector("body");
-console.log(body)
 const container = document.querySelector(".container");
 const btn_2 = document.querySelector(".btn_2");
 const intro = document.querySelector(".intro");
@@ -20,9 +19,10 @@ const questionAnswered = document.querySelector(".questionAnswered");
 const btn_1 = document.querySelector(".btn_1");
 const landingPage = document.querySelector(".landingPage");
 const input = document.querySelector("input");
+// const userName = input.value;
 
 
-let [counter, count, clock, timeUp] = [0, 0, 0, 10];
+let [ratio, counter, count, clock, timeUp] = [0, 0, 0, 0, 10];
 
 import {japaneseAnimeJapanese, japaneseAnimeEnglish} from "./index-2.js"
 
@@ -35,10 +35,15 @@ function slideFunction() {
 }
 
 function quizClock() {
-  clock < timeUp ? clock++ : clock = 0;
-  timer.innerHTML = clock;
-  circleContainer.style.background = `conic-gradient(red ${clock*36}deg, blue ${clock*36}deg)`
-  if(clock === timeUp) {
+  timer.innerHTML = timeUp;
+  circleContainer.style.background = `conic-gradient(red ${ratio*36}deg, blue ${ratio*36}deg)`
+  if(timeUp > 0) {
+    timeUp--;
+    ratio++;
+
+  } else {
+    timeUp = 10;
+    ratio = 0;
     wrongAnswer()
     update()
   }
@@ -59,7 +64,8 @@ function checkUserAnswer(e) {
     wrongAnswer();
   }
   update();
-  clock = 0;
+  ratio = 0;
+  timeUp = 10;
 }
 
 function wrongAnswer() {
@@ -87,8 +93,8 @@ function trackQuestion() {
 }
 
 function displayFinalScore() {
+  let score = count/quizLength;
   let userName = input.value;
-  let score = count/quizLength
   localStorage.setItem("name", userName);
   localStorage.setItem("score", score*100)
   quiz.style.display = "none";
@@ -127,13 +133,12 @@ function displayRoundElements() {
 }
 
 function displayButton() {
-  if(input.value === "") {
-    alert("enter a user name")
-  } else {
-    btn_2.style.display = "block";
-    introMessage.style.display = "none";
-  }
+  btn_2.style.display = "block";
+  introMessage.style.display = "none";
 }
+
+
+// window.addEventListener("DOMContentLoaded", startQuiz, false);
 
 function startQuiz() {
     quiz.style.display = "flex";
