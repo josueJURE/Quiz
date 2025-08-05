@@ -1,209 +1,287 @@
-const select = document.querySelector("#language"); // select element
-const body = document.querySelector("body");
-const container = document.querySelector(".container");
-const btn_2 = document.querySelector(".btn_2");
-const intro = document.querySelector(".intro");
-const quiz = document.querySelector(".quiz");
-const introMessage = document.querySelector(".introMessage");
-const quizImage = document.querySelector(".quizImage img");
-const multipleChoice = [...document.querySelector(".multipleChoice").children];
-const quizLength = multipleChoice.length;
-const circleContainer = document.querySelector(".circleContainer")
-const circleBar = 360 / quizLength; // if five question value is 72degree;
-const finalScore = document.querySelector(".finalScore");
-const bubble = document.querySelector(".bubble");
-const gif = document.querySelector(".gif");
-const coloredElements = document.querySelector(".coloredElements");
-const timer = document.querySelector(".timer");
-const questionAnswered = document.querySelector(".questionAnswered");
-const btn_1 = document.querySelector(".btn_1");
-const landingPage = document.querySelector(".landingPage");
-const input = document.querySelector("input");
-let [ratio, counter, count, clock, score, timeUp] = [0, 0, 0, 0, 0, 10];
+// Quiz Data
+const quizData = {
+  english: [
+    {
+      name: "Dragon Ball",
+      picture: "images/dragon-ball-z-goku.gif",
+      japaneseName: "ドラゴンボール"
+    },
+    {
+      name: "Attack On Titan",
+      picture: "images/AttackonTitanFinal.jpg",
+      japaneseName: "進撃の巨人"
+    },
+    {
+      name: "Naruto",
+      picture: "https://res.cloudinary.com/jerrick/image/upload/v1616592065/605b3cc118e784001e22da0d.jpg",
+      japaneseName: "ナルト"
+    },
+    {
+      name: "Demon Slayer",
+      picture: "https://cdn.vox-cdn.com/thumbor/gcVHhhZ4VwVswvbDPvI-RfQ7ECQ=/1400x1050/filters:format(png)/cdn.vox-cdn.com/uploads/chorus_asset/file/19721018/Tanjiro__Demon_Slayer_.png",
+      japaneseName: "鬼滅の刃"
+    },
+    {
+      name: "Ghost in the Shell",
+      picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8VBbI5HMki5cmjP_Gq0TdyA6VZn_0_fmkhg&usqp=CAU",
+      japaneseName: "攻殻機動隊"
+    }
+  ]
+};
 
-// let score = count/quizLength;
+// DOM Elements
+const welcomeScreen = document.getElementById('welcomeScreen');
+const quizScreen = document.getElementById('quizScreen');
+const resultsScreen = document.getElementById('resultsScreen');
+const usernameInput = document.getElementById('usernameInput');
+const languageSelect = document.getElementById('languageSelect');
+const startBtn = document.getElementById('startBtn');
+const quizImage = document.getElementById('quizImage');
+const optionsContainer = document.getElementById('optionsContainer');
+const progressBar = document.getElementById('progressBar');
+const progressText = document.getElementById('progressText');
+const timerCircle = document.getElementById('timerCircle');
+const timerValue = document.getElementById('timerValue');
+const resultsTitle = document.getElementById('resultsTitle');
+const scoreText = document.getElementById('scoreText');
+const scoreValue = document.getElementById('scoreValue');
+const scoreCircle = document.getElementById('scoreCircle');
+const scorePercentage = document.getElementById('scorePercentage');
+const characterGif = document.getElementById('characterGif');
+const restartBtn = document.getElementById('restartBtn');
 
-console.log(input.value)
+// Quiz State
+let currentQuestionIndex = 0;
+let score = 0;
+let timer;
+let timeLeft = 10;
+let selectedLanguage = 'english';
+let username = '';
+let quizQuestions = [];
 
-let japaneseAnimeJapanese = [
-{
-  name: "ドラゴンボール",
-  picture: "https://dbgbh.bn-ent.net/assets/img/news/news_thumb_kv.png"
-},
-{
-  name: "進撃の巨人",
-  picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJYjy_bS8t3ScWyG7q94fIltnar3ChaOHmGA&usqp=CAU"
-},
-{
-  name: "ナルト",
-  picture: "https://res.cloudinary.com/jerrick/image/upload/v1616592065/605b3cc118e784001e22da0d.jpg"
-},
-{
-  name: "鬼滅の刃",
-  picture: "https://cdn.vox-cdn.com/thumbor/gcVHhhZ4VwVswvbDPvI-RfQ7ECQ=/1400x1050/filters:format(png)/cdn.vox-cdn.com/uploads/chorus_asset/file/19721018/Tanjiro__Demon_Slayer_.png"
-},
-{
-  name: "攻殻機動隊",
-  picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8VBbI5HMki5cmjP_Gq0TdyA6VZn_0_fmkhg&usqp=CAU"
-}
-]
-
-let japaneseAnimeEnglish = [
-{
-  name: "Dragon ball",
-  picture: "https://dbgbh.bn-ent.net/assets/img/news/news_thumb_kv.png"
-},
-{
-  name: "Attack On Titans",
-  picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJYjy_bS8t3ScWyG7q94fIltnar3ChaOHmGA&usqp=CAU"
-},
-{
-  name: "naruto",
-  picture: "https://res.cloudinary.com/jerrick/image/upload/v1616592065/605b3cc118e784001e22da0d.jpg"
-},
-{
-  name: "Demon Slayer",
-  picture: "https://cdn.vox-cdn.com/thumbor/gcVHhhZ4VwVswvbDPvI-RfQ7ECQ=/1400x1050/filters:format(png)/cdn.vox-cdn.com/uploads/chorus_asset/file/19721018/Tanjiro__Demon_Slayer_.png"
-},
-{
-  name: "Ghost in the shell",
-  picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8VBbI5HMki5cmjP_Gq0TdyA6VZn_0_fmkhg&usqp=CAU"
-}
-]
-
-// export {japaneseAnimeJapanese, japaneseAnimeEnglish};
-// import {japaneseAnimeJapanese, japaneseAnimeEnglish} from "./index-2.js"
-
-const ranking = JSON.parse(localStorage.getItem("userObject")) || [];
-
-function userRanking() {
-  ranking.push({
-    userName: input.value,
-    userScore: (score / quizLength) * 100,
-  })
-  localStorage.setItem("userObject", JSON.stringify(ranking))
+// Initialize the app
+function init() {
+  // Event Listeners
+  usernameInput.addEventListener('input', validateInputs);
+  languageSelect.addEventListener('change', validateInputs);
+  startBtn.addEventListener('click', startQuiz);
+  restartBtn.addEventListener('click', restartQuiz);
+  
+  // Disable start button initially
+  startBtn.disabled = true;
 }
 
-btn_1.addEventListener("click", slideFunction);
-btn_2.addEventListener("click", startQuiz);
-select.addEventListener("change", displayButton);
-
-function slideFunction() {
-  landingPage.classList.toggle("slides");
+// Validate inputs to enable start button
+function validateInputs() {
+  username = usernameInput.value.trim();
+  selectedLanguage = languageSelect.value;
+  
+  startBtn.disabled = !(username && selectedLanguage);
 }
 
-function quizClock() {
-  timer.innerHTML = timeUp;
-  circleContainer.style.background = `conic-gradient(red ${ratio*36}deg, blue ${ratio*36}deg)`
-  if(timeUp > 0) {
-    timeUp--;
-    ratio++;
-  } else {
-    timeUp = 10;
-    ratio = 0;
-    wrongAnswer()
-    update()
+// Start the quiz
+function startQuiz() {
+  username = usernameInput.value.trim();
+  selectedLanguage = languageSelect.value;
+  
+  // Prepare quiz questions
+  quizQuestions = [...quizData.english];
+  shuffleArray(quizQuestions);
+  
+  // Show quiz screen
+  welcomeScreen.style.display = 'none';
+  quizScreen.style.display = 'block';
+  
+  // Load first question
+  loadQuestion();
+}
+
+// Load a question
+function loadQuestion() {
+  resetTimer();
+  startTimer();
+  
+  const currentQuestion = quizQuestions[currentQuestionIndex];
+  
+  // Update progress
+  progressBar.style.width = `${(currentQuestionIndex / quizQuestions.length) * 100}%`;
+  progressText.textContent = `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
+  
+  // Set image
+  quizImage.src = currentQuestion.picture;
+  quizImage.alt = `Image from ${currentQuestion.name}`;
+  
+  // Prepare options
+  const correctAnswer = selectedLanguage === 'english' ? currentQuestion.name : currentQuestion.japaneseName;
+  let options = [correctAnswer];
+  
+  // Get 3 other random options
+  const otherQuestions = quizQuestions.filter((_, index) => index !== currentQuestionIndex);
+  shuffleArray(otherQuestions);
+  
+  for (let i = 0; i < 3 && i < otherQuestions.length; i++) {
+    const option = selectedLanguage === 'english' 
+      ? otherQuestions[i].name 
+      : otherQuestions[i].japaneseName;
+    options.push(option);
   }
+  
+  // Shuffle options
+  shuffleArray(options);
+  
+  // Display options
+  optionsContainer.innerHTML = '';
+  options.forEach(option => {
+    const button = document.createElement('button');
+    button.textContent = option;
+    button.className = 'option-btn';
+    button.addEventListener('click', () => selectAnswer(option, correctAnswer));
+    optionsContainer.appendChild(button);
+  });
 }
 
-function userChoice(e) {
-  for(var i = 0; i < multipleChoice.length; i++) {
-    multipleChoice[i].addEventListener("click", checkUserAnswer)
-  }
-}
-
-function checkUserAnswer(e) {
-  let answer = e.target;
-  if(answer.innerHTML === japaneseAnimeEnglish[counter].name) {
-    correctAnswer();
-    count++;
+// Select an answer
+function selectAnswer(selectedOption, correctAnswer) {
+  clearInterval(timer);
+  
+  // Disable all options
+  const optionButtons = document.querySelectorAll('.option-btn');
+  optionButtons.forEach(button => {
+    button.disabled = true;
+    if (button.textContent === correctAnswer) {
+      button.classList.add('correct');
+    } else if (button.textContent === selectedOption && selectedOption !== correctAnswer) {
+      button.classList.add('wrong');
+    }
+  });
+  
+  // Check if answer is correct
+  if (selectedOption === correctAnswer) {
     score++;
+  }
+  
+  // Move to next question or show results
+  setTimeout(() => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < quizQuestions.length) {
+      loadQuestion();
+    } else {
+      showResults();
+    }
+  }, 1500);
+}
+
+// Show results
+function showResults() {
+  quizScreen.style.display = 'none';
+  resultsScreen.style.display = 'block';
+  
+  const percentage = Math.round((score / quizQuestions.length) * 100);
+  
+  // Update results
+  resultsTitle.textContent = `Well done, ${username}!`;
+  scoreValue.textContent = percentage;
+  scorePercentage.textContent = `${percentage}%`;
+  
+  // Animate score circle
+  const degrees = (percentage / 100) * 360;
+  scoreCircle.style.background = `conic-gradient(var(--primary-color) ${degrees}deg, #f0f0f0 ${degrees}deg)`;
+  
+  // Set character GIF based on score
+  if (percentage >= 80) {
+    characterGif.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGJtY2Z5cGJ4Y3JwZ3N0Y2VlY2V6dXZ4dWZ1eGJ6eWx2eGJjZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3q2K5jinAlQuCLFe/giphy.gif";
+  } else if (percentage >= 50) {
+    characterGif.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2J0YjZ5bW9qZ2V6Y3Z2bGJqZGJ0bXJ0dTZ1M2R4Z2FjZ2N6ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKSha51ATTx9KzC/giphy.gif";
   } else {
-    wrongAnswer();
+    characterGif.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnJ5a3R4eWJ5bGJtZ3U0eXZ5Z2F4dW5xZ3R3Z2R5bWJ6eGJtZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKrNh1J76jIuVU4/giphy.gif";
   }
-  update();
-  ratio = 0;
-  timeUp = 10;
+  
+  // Save score to local storage
+  saveScore(username, percentage);
 }
 
-function wrongAnswer() {
-  document.getElementById(counter).style.background = "red";
+// Save score to local storage
+function saveScore(username, score) {
+  const scores = JSON.parse(localStorage.getItem('animeQuizScores')) || [];
+  scores.push({ username, score, date: new Date().toISOString() });
+  localStorage.setItem('animeQuizScores', JSON.stringify(scores));
 }
 
-function correctAnswer() {
-  document.getElementById(counter).style.background = "green";
+// Timer functions
+function startTimer() {
+  timeLeft = 10;
+  updateTimerDisplay();
+  
+  timer = setInterval(() => {
+    timeLeft--;
+    updateTimerDisplay();
+    
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      timeUp();
+    }
+  }, 1000);
 }
 
-function update() {
-  if(counter < quizLength - 1) {
-    counter++;
-    displayUniqueChoices();
-    trackQuestion();
-  } else {
-    displayFinalScore();
-  }
+function resetTimer() {
+  clearInterval(timer);
+  timeLeft = 10;
+  updateTimerDisplay();
 }
 
-function trackQuestion() {
-  if(counter < quizLength) {
-    questionAnswered.innerHTML = `question ${counter+1} of ${quizLength}`;
-  }
-}
-//
-function displayFinalScore() {
-  quiz.style.display = "none";
-  finalScore.style.display = "flex";
-  bubble.innerHTML = `<h1>Well done ${input.value} Your final score is ${(score/quizLength)*100}%</h1>`
-  gif.innerHTML = `<img src="images/dragon-ball-z-goku.gif" alt="">`
-  document.body.style.backgroundColor = "#368dda";
-  userRanking()
-}
-
-
-function randomNumbers() {
-  return  Math.floor(Math.random()*quizLength);
-}
-
-function generateRandomNumbers() {
-  const uniqueNumbers = new Set();
-  while (uniqueNumbers.size < quizLength) {
-    uniqueNumbers.add(randomNumbers())
-  }
-  return [...uniqueNumbers]
-}
-
-function displayUniqueChoices() {
-  quizImage.src = japaneseAnimeEnglish[counter].picture;
-  const arrayUniqueDigits = generateRandomNumbers();
-  multipleChoice.forEach((choice, i) => {
-    choice.innerHTML = japaneseAnimeEnglish[arrayUniqueDigits[i]].name
-  })
-}
-
-function displayRoundElements() {
-  for(var i = 0; i < quizLength; i++) {
-    coloredElements.innerHTML += `<div id=${i} class="roundBoxes"></div>`
+function updateTimerDisplay() {
+  timerValue.textContent = timeLeft;
+  const degrees = (timeLeft / 10) * 360;
+  timerCircle.style.background = `conic-gradient(var(--secondary-color) ${degrees}deg, transparent ${degrees}deg)`;
+  
+  // Change color when time is running out
+  if (timeLeft <= 3) {
+    timerCircle.style.background = `conic-gradient(var(--wrong-color) ${degrees}deg, transparent ${degrees}deg)`;
   }
 }
 
-function displayButton() {
-  btn_2.style.display = "block";
-  introMessage.style.display = "none";
+function timeUp() {
+  const optionButtons = document.querySelectorAll('.option-btn');
+  optionButtons.forEach(button => {
+    button.disabled = true;
+    if (button.textContent === (selectedLanguage === 'english' 
+        ? quizQuestions[currentQuestionIndex].name 
+        : quizQuestions[currentQuestionIndex].japaneseName)) {
+      button.classList.add('correct');
+    }
+  });
+  
+  setTimeout(() => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < quizQuestions.length) {
+      loadQuestion();
+    } else {
+      showResults();
+    }
+  }, 1500);
 }
 
-  function startQuiz() {
-      quiz.style.display = "flex";
-      container.style.display = "none";
-      intro.style.display = "none";
-      displayUniqueChoices();
-      userChoice();
-      displayRoundElements();
-      trackQuestion()
-      setInterval(quizClock, 1000);
-  }
+// Restart quiz
+function restartQuiz() {
+  currentQuestionIndex = 0;
+  score = 0;
+  resultsScreen.style.display = 'none';
+  welcomeScreen.style.display = 'block';
+  
+  // Reset inputs
+  usernameInput.value = '';
+  languageSelect.value = '';
+  startBtn.disabled = true;
+}
 
-body.addEventListener("click", function(e) {
-  if(input.value === "" && e.key !== "Enter") return;
-  input.style.display = "none";
-  select.style.display = "block";
-})
+// Utility function to shuffle array
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Initialize the app when DOM is loaded
+document.addEventListener('DOMContentLoaded', init);
