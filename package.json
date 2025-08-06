@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index-1.js",
-  "scripts": {},
+  "scripts": {
+    "start": "npm run start"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/josueJURE/Quiz.git"
